@@ -296,6 +296,23 @@
             margin-top: 10px;
         }
         
+        /* Student Photo Styles */
+        .student-photo-container {
+            margin: 20px auto;
+            width: 120px;
+            height: 160px;
+            border: 4px solid var(--primary-color);
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .student-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
         .student-info {
             margin: 30px 0;
         }
@@ -572,7 +589,7 @@
                     <div class="principal-title">Kepala Sekolah SMP Negeri  4 Silo</div>
                     <div class="greeting-text">
                         <p>Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
-                        <p style="text-align: justify;">Dengan penuh syukur kehadirat Allah SWT, kami sampaikan pengumuman kelulusan siswa-siswi SMP Negeri Bahagia Tahun Pelajaran 2023/2024. Perjuangan dan kerja keras kalian selama tiga tahun belajar di sekolah ini telah membuahkan hasil yang membanggakan.</p>
+                        <p style="text-align: justify;">Dengan penuh syukur kehadirat Allah SWT, kami sampaikan pengumuman kelulusan siswa-siswi SMP Negeri 4 Silo Tahun ajaran 2024/2025. Perjuangan dan kerja keras kalian selama tiga tahun belajar di sekolah ini telah membuahkan hasil yang membanggakan.</p>
                         <p style="text-align: justify;">Kami ucapkan selamat kepada seluruh siswa yang telah dinyatakan lulus. Teruslah berkarya dan raihlah cita-citamu setinggi mungkin. Jadilah generasi yang membanggakan keluarga, sekolah, dan bangsa.</p>
                         <p style="text-align: justify;">Untuk orang tua/wali murid, terima kasih atas kerjasama dan dukungannya selama ini. Semoga prestasi anak-anak kita dapat terus ditingkatkan di jenjang pendidikan berikutnya.</p>
                         <p>Wassalamu'alaikum Warahmatullahi Wabarakatuh</p>
@@ -651,6 +668,11 @@
                         <div class="graduation-subtitle">Anda Telah Berhasil Menyelesaikan Pendidikan</div>
                     </div>
                     
+                    <!-- Foto Siswa -->
+                    <div class="student-photo-container">
+                        <img id="studentPhoto" class="student-photo" src="" alt="Foto Siswa">
+                    </div>
+                    
                     <div class="student-info">
                         <h2 class="student-name" id="resultName"></h2>
                         <div class="graduation-badge">
@@ -660,20 +682,14 @@
                     </div>
                     
                     <div class="graduation-message">
-                        <p style="text-align: justify;">Kami bangga mengumumkan bahwa Anda telah memenuhi semua persyaratan kelulusan SMP Negeri Bahagia Tahun 2024.</p>
-                        <p>Teruslah mengukir prestasi dan raihlah cita-citamu setinggi langit. Semoga kesuksesan selalu menyertai perjalananmu di jenjang pendidikan berikutnya.</p>
+                        <p style="text-align: justify;">Kami bangga mengumumkan bahwa Anda telah memenuhi semua persyaratan kelulusan SMP Negeri 4 Silo Tahun 2025.</p>
+                        <p style="text-align: justify;">Teruslah mengukir prestasi dan raihlah cita-citamu setinggi langit. Semoga kesuksesan selalu menyertai perjalananmu di jenjang pendidikan berikutnya.</p>
                     </div>
                     
                     <div class="quote">
                         <i class="fas fa-quote-left"></i>
                         <p>Pendidikan adalah senjata paling ampuh yang bisa digunakan untuk mengubah dunia</p>
                         <p class="quote-author">- Nelson Mandela -</p>
-                    </div>
-                    
-                    <div class="signature">
-                        <img src="ttd.png" alt="Tanda Tangan Kepala Sekolah" class="signature-img">
-                        <p class="signature-name">Muhammad Ali, S.Pd</p>
-                        <p class="signature-title">Kepala Sekolah SMP Negeri 4 Silo</p>
                     </div>
                     
                     <button class="home-button" onclick="showPage(1)">
@@ -805,6 +821,7 @@
         const graduationResult = document.getElementById('graduationResult');
         const errorResult = document.getElementById('errorResult');
         const checkForm = document.getElementById('checkForm');
+        const studentPhoto = document.getElementById('studentPhoto');
         
         // Sembunyikan semua hasil terlebih dahulu
         graduationResult.style.display = 'none';
@@ -814,6 +831,15 @@
         if (graduationData[nisn]) {
             // Tampilkan hasil kelulusan
             document.getElementById('resultName').textContent = graduationData[nisn].name;
+            
+            // Set foto siswa (asumsi foto disimpan dengan format NISN.jpg di folder photos/)
+            studentPhoto.src = 'photos/' + nisn + '.jpg';
+            studentPhoto.onerror = function() {
+                // Jika foto tidak ditemukan, gunakan foto default
+                this.src = 'photos/default.jpg';
+                this.alt = 'Foto tidak tersedia';
+            };
+            
             checkForm.style.display = 'none';
             graduationResult.style.display = 'block';
         } else {
@@ -837,8 +863,8 @@
         
         // Update judul countdown untuk menunjukkan tanggal target
         document.querySelector('.countdown-title').textContent = 
-            'Pengumuman akan dibuka pada 29 Mei 2025. Waktu tersisa:';
+            'Pengumuman akan dibuka pada 02 Juni 2025. Waktu tersisa:';
     };
-</script>
+    </script>
 </body>
 </html>
