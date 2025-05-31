@@ -81,10 +81,6 @@
         name: "Halifah",
         status: "LULUS"
     },
-    "0091312514": {
-        name: "Irfan",
-        status: "LULUS"
-    },
     "0102467827": {
         name: "Jelci Olifia",
         status: "LULUS"
@@ -136,7 +132,7 @@
     };
     
     // Set waktu target untuk countdown (2 Juni 2025 jam 00:00:00)
-    const targetDate = new Date('Jun 02, 2025 07:30:00').getTime();
+    const targetDate = new Date('Jun 02, 2025 10:00:00').getTime();
     
     // Fungsi untuk menampilkan notifikasi
     function showNotification() {
@@ -253,5 +249,5 @@
         
         // Update judul countdown untuk menunjukkan tanggal target
         document.querySelector('.countdown-title').textContent = 
-            'Pengumuman akan dibuka pada 02 Juni 2025 jam 07:00:00. Waktu tersisa:';
+            'Pengumuman akan dibuka pada 02 Juni 2025 jam 10:00:00. Waktu tersisa:';
     };
