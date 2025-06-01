@@ -417,6 +417,91 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(255,107,107,0.6);
         }
+/* Tambahkan di bagian CSS */
+.all-students-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin: 30px 0;
+}
+
+.student-card {
+    text-align: center;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.student-card:hover {
+    transform: translateY(-5px);
+}
+
+.student-card-photo {
+    width: 120px;
+    height: 160px;
+    border: 3px solid var(--primary-color);
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0 auto 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.student-card-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.student-card-name {
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 5px;
+    word-break: break-word;
+}
+
+.student-card-nisn {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .all-students-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .all-students-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 15px;
+    }
+    
+    .student-card-photo {
+        width: 100px;
+        height: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .all-students-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 10px;
+    }
+    
+    .student-card-photo {
+        width: 80px;
+        height: 120px;
+    }
+    
+    .student-card-name {
+        font-size: 12px;
+    }
+    
+    .student-card-nisn {
+        font-size: 10px;
+    }
+}
         
         .home-button i {
             margin-right: 8px;
@@ -575,7 +660,7 @@
                     </div>
                     <div class="school-name">
                         <h1>SMP NEGERI 4 SILO</h1>
-                        <!-- <p>Terakreditasi A - Sekolah Adiwiyata Nasional</p> -->
+                       <p>Jl. PTPN I REGIONAL 5 Kebun Silosanen - Silo - Jember</p>
                     </div>
                 </div>
             </div>
@@ -620,7 +705,7 @@
                         <a href="https://www.tiktok.com/@smpn4silo_?_t=8hdtGSbpiEr&_r=1" class="social-icon" target="_blank"><i class="fab fa-tiktok"></i></a>
                     </div>
                     <div class="copyright">
-                        &copy; 2025 SMP Negeri 4 Silo. Semua Hak Dilindungi. | developer by : <a style="text-decoration: none; color: inherit;" href="https://instagram.com/smpn4silo?igshid=OGQ5ZDc2ODk2ZA==" target="_blank" >smpn4silo</a>
+                        &copy; 2025 SMP Negeri 4 Silo. Semua Hak Dilindungi. <br> developer by : <a style="text-decoration: none; color: inherit;" href="https://instagram.com/smpn4silo?igshid=OGQ5ZDc2ODk2ZA==" target="_blank" >smpn4silo</a>
                     </div>
                 </div>
             </div>
@@ -723,7 +808,7 @@
                         <a href="https://www.tiktok.com/@smpn4silo_?_t=8hdtGSbpiEr&_r=1" class="social-icon" target="_blank"><i class="fab fa-tiktok"></i></a>
                     </div>
                     <div class="copyright">
-                        &copy; 2025 SMP Negeri 4 Silo. Semua Hak Dilindungi. | developer by : <a style="text-decoration: none; color: inherit;" href="https://instagram.com/smpn4silo?igshid=OGQ5ZDc2ODk2ZA==" target="_blank" >smpn4silo</a>
+                        &copy; 2025 SMP Negeri 4 Silo. Semua Hak Dilindungi. <br> developer by : <a style="text-decoration: none; color: inherit;" href="https://instagram.com/smpn4silo?igshid=OGQ5ZDc2ODk2ZA==" target="_blank" >smpn4silo</a>
                     </div>
                 </div>
             </div>

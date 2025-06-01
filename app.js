@@ -130,9 +130,12 @@
         status: "LULUS"
     }
     };
+
+    // NPSN Sekolah
+const schoolNPSN = "20549897"; // Contoh NPSN, ganti dengan yang sesuai
     
     // Set waktu target untuk countdown (2 Juni 2025 jam 00:00:00)
-    const targetDate = new Date('Jun 02, 2025 10:05:00').getTime();
+    const targetDate = new Date('Jun 02, 2025 10:10:00').getTime();
     
     // Fungsi untuk menampilkan notifikasi
     function showNotification() {
@@ -202,41 +205,121 @@
     }
     
     // Fungsi untuk memeriksa kelulusan
-    function checkGraduation() {
-        const nisn = document.getElementById('nisn').value.trim();
-        const graduationResult = document.getElementById('graduationResult');
-        const errorResult = document.getElementById('errorResult');
-        const checkForm = document.getElementById('checkForm');
-        const studentPhoto = document.getElementById('studentPhoto');
-        
-        // Sembunyikan semua hasil terlebih dahulu
-        graduationResult.style.display = 'none';
-        errorResult.style.display = 'none';
-        
-        // Periksa apakah NISN ada di database
-        if (graduationData[nisn]) {
-            // Tampilkan hasil kelulusan
-            document.getElementById('resultName').textContent = graduationData[nisn].name;
-            
-            // Set foto siswa (asumsi foto disimpan dengan format NISN.jpg di folder photos/)
-            studentPhoto.src = 'photos/' + nisn + '.jpg';
-            studentPhoto.onerror = function() {
-                // Jika foto tidak ditemukan, gunakan foto default
-                this.src = 'photos/default.jpg';
-                this.alt = 'Foto tidak tersedia';
-            };
-            
-            checkForm.style.display = 'none';
-            graduationResult.style.display = 'block';
-        } else {
-            // Tampilkan hasil error
-            checkForm.style.display = 'none';
-            errorResult.style.display = 'block';
-        }
-        
-        // Scroll ke hasil
-        graduationResult.scrollIntoView({ behavior: 'smooth' });
+// Fungsi untuk memeriksa kelulusan
+function checkGraduation() {
+    const input = document.getElementById('nisn').value.trim();
+    const graduationResult = document.getElementById('graduationResult');
+    const errorResult = document.getElementById('errorResult');
+    const checkForm = document.getElementById('checkForm');
+    const studentPhoto = document.getElementById('studentPhoto');
+    
+    // Sembunyikan semua hasil terlebih dahulu
+    graduationResult.style.display = 'none';
+    errorResult.style.display = 'none';
+    
+    // Periksa apakah input adalah NPSN sekolah
+    if (input === schoolNPSN) {
+        // Tampilkan semua murid
+        showAllStudents();
+        return;
     }
+    
+    // Periksa apakah NISN ada di database
+    if (graduationData[input]) {
+        // Tampilkan hasil kelulusan individual
+        document.getElementById('resultName').textContent = graduationData[input].name;
+        
+        // Set foto siswa
+        studentPhoto.src = 'photos/' + input + '.jpg';
+        studentPhoto.onerror = function() {
+            // Jika foto tidak ditemukan, gunakan foto default
+            this.src = 'photos/default.jpg';
+            this.alt = 'Foto tidak tersedia';
+        };
+        
+        checkForm.style.display = 'none';
+        graduationResult.style.display = 'block';
+    } else {
+        // Tampilkan hasil error
+        checkForm.style.display = 'none';
+        errorResult.style.display = 'block';
+    }
+    
+    // Scroll ke hasil
+    graduationResult.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Fungsi untuk menampilkan semua murid
+function showAllStudents() {
+    const checkForm = document.getElementById('checkForm');
+    const graduationResult = document.getElementById('graduationResult');
+    
+    // Ubah tampilan graduation card untuk semua murid
+    graduationResult.innerHTML = `
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        
+        <div class="graduation-header">
+            <div class="graduation-icon">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h1 class="graduation-title">SELAMAT!</h1>
+            <div class="graduation-subtitle">Seluruh Murid SMP Negeri 4 Silo Lulusan Ke - 16  Tahun 2025</div>
+        </div>
+        
+        <div class="all-students-grid" id="allStudentsGrid">
+            <!-- Student cards will be inserted here -->
+        </div>
+        
+        <div class="graduation-message">
+            <p style="text-align: justify;">Kami bangga mengumumkan bahwa seluruh siswa SMP Negeri 4 Silo Tahun 2025 telah memenuhi semua persyaratan kelulusan.</p>
+            <p style="text-align: justify;">Teruslah mengukir prestasi dan raihlah cita-citamu setinggi langit. Semoga kesuksesan selalu menyertai perjalananmu di jenjang pendidikan berikutnya.</p>
+        </div>
+        
+        <div class="quote">
+            <i class="fas fa-quote-left"></i>
+            <p>Allah akan meninggikan orang-orang yang beriman di antaramu dan orang-orang yang diberi ilmu pengetahuan beberapa derajat.</p>
+            <p class="quote-author">- QS. Surat Al-Mujadilah ayat 11 -</p>
+        </div>
+        
+        <button class="home-button" onclick="showPage(1)">
+            <i class="fas fa-home"></i> Kembali ke Beranda
+        </button>
+    `;
+    
+    // Buat array dari siswa dan urutkan berdasarkan nama
+    const studentsArray = Object.entries(graduationData).map(([nisn, data]) => ({
+        nisn,
+        ...data
+    })).sort((a, b) => a.name.localeCompare(b.name));
+    
+    // Tambahkan semua siswa ke container dalam bentuk grid
+    const container = document.getElementById('allStudentsGrid');
+    
+    studentsArray.forEach(student => {
+        const studentCard = document.createElement('div');
+        studentCard.className = 'student-card';
+        
+        studentCard.innerHTML = `
+            <div class="student-card-photo">
+                <img src="photos/${student.nisn}.jpg" 
+                     onerror="this.src='photos/default.jpg'; this.alt='Foto tidak tersedia'" 
+                     alt="Foto ${student.name}">
+            </div>
+            <div class="student-card-name">${student.name}</div>
+            <div class="student-card-nisn">NISN: ${student.nisn}</div>
+        `;
+        
+        container.appendChild(studentCard);
+    });
+    
+    checkForm.style.display = 'none';
+    graduationResult.style.display = 'block';
+    graduationResult.scrollIntoView({ behavior: 'smooth' });
+}
     
     // Inisialisasi saat halaman dimuat
     window.onload = function() {
