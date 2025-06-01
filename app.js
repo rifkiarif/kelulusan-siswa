@@ -132,7 +132,7 @@
     };
     
     // Set waktu target untuk countdown (2 Juni 2025 jam 00:00:00)
-    const targetDate = new Date('Jun 02, 2025 10:00:00').getTime();
+    const targetDate = new Date('Jun 02, 2025 10:05:00').getTime();
     
     // Fungsi untuk menampilkan notifikasi
     function showNotification() {
